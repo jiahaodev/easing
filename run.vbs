@@ -1,0 +1,1 @@
+CreateObject("WScript.Shell").Run "cmd /c D:/WorkSpace/Study/anim/easing/run.bat",0
