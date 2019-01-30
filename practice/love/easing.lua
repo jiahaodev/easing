@@ -23,6 +23,29 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ]]
 
+--[[
+  基础知识：
+  http://blog.cgsdream.org/2015/09/19/tweenslow-motion-formula/
+  t:timestamp,动画执行到当前帧所进过的时间
+  b:begining,起始值
+  c:change,需要变化的量
+  d:duration，动画的总时间
+
+  首先是实现easein：
+
+  函数表达是为： y = x*x（比较懒，就不去配图了）
+
+  因此实现为：
+
+  function easeInQuad(t,b,c,d){
+      var x = t/d; //x值（当前进行的百分比，结果为x）
+      var y = x*x; //y值 (把x套入公式)
+      return b+c*y; //套入最初的公式  （计算累积偏移）
+  }
+
+  伪代码： b + c * y (y可以理解为一个系数.y是经过计算的的跟x有关的)
+--]]
+
 -- For all easing functions:
 -- t = time
 -- b = begin

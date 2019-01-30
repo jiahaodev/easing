@@ -53,6 +53,7 @@ function love.load()
   love.graphics.setPointSize(POINT_SIZE)
 
   -- put all easing function names inside an array for easy navigation by array index.
+  -- 初始化所有缓动函数 name 到 functions 这个table中
   functions = {}
   for funName, _ in pairs(easing) do
     functions[#functions + 1] = funName
@@ -60,7 +61,8 @@ function love.load()
   table.sort(functions)
   selFun = 1
 
-  dot = movingDot(CHART_H * 2 / 3, functions[selFun])
+  --让球动起来
+  dot = movingDot(CHART_H * 2 / 3, functions[selFun])  --movingDot本身是一个table, 内部有update 跟 render 函数
 end
 
 function love.draw()
